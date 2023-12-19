@@ -305,3 +305,61 @@ int main(){
 	
 	return 0;
 }
+// Main sem Menu //
+#include <stdio.h>
+#include <stdlib.h>
+
+// Estrutura de dados para a lista encadeada
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Função para criar uma nova lista encadeada
+struct Node* createList() {
+    int data;
+    struct Node* head = NULL;
+
+    // Leia os dados do usuário até que ele digite 0
+    do {
+        printf("Entre com um valor (0 para parar): ");
+        scanf("%d", &data);
+
+        // Cria uma nova celula para a lista
+        struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->next = NULL;
+
+        // Adiciona a celula à lista
+        if (head == NULL) {
+            head = newNode;
+        } else {
+            struct Node* current = head;
+            while (current->next != NULL) {
+                current = current->next;
+            }
+            current->next = newNode;
+        }
+    } while (data != 0);
+
+    return head;
+}
+
+// Função para imprimir a lista encadeada
+void printList(struct Node* head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    // Cria uma nova lista encadeada
+    struct Node* head = createList();
+
+    // Imprime a lista encadeada
+    printList(head);
+
+    return 0;
+}
