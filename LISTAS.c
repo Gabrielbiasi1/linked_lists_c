@@ -4,7 +4,7 @@
 
 
 
-#include <stdio.h>2
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -40,6 +40,7 @@ Node *adNode(int dados){
     }
     return novo;
 }
+
 
 //remove uma node da lista
 
@@ -97,12 +98,27 @@ void Menu(){
     printf("\n 2- Adiciona uma Node a lista; \n");
     printf("\n 3- Remove uma Node da Lista; \n");
     printf("\n 4- Insere uma Node em uma posicao especifica da Lista; \n");
-    printf("\n 5- Encerra as atividades; \n");
+    printf("\n 5- Inverte a ordem da lista; \n");
+     printf("\n 6- Encerra as atividades; \n");
     return;
 }
 
+// inverte a lista //
 
-
+struct Lista * reverseList(struct Lista *lista)
+{
+    struct Item *anterior=NULL, *atual=lista->head, *proximo=NULL;
+    struct Lista *listainv= (struct Lista*) malloc (sizeof(struct Lista));
+    while (atual!=NULL)
+    {
+        proximo = atual->prox;
+        atual->proximo=anterior; //ponteiro do atual vai apontar para o anterior (inverte)
+        anterior=atual; // o anterior vira atual;
+        atual= proximo; // atual vira o proximo;
+    }
+    listainv->primeiro = anterior;
+    return listainv;
+}
 int main(int arg1, char **arg2){
     int entrada = -1;
     int a1 = 0, a2 = 0;
@@ -143,7 +159,8 @@ int main(int arg1, char **arg2){
                     break;
 
                 case 5:
-                    //encerra
+                    //inverte 
+                    inverter_lista();
                     break;
 
 
